@@ -19,6 +19,9 @@ import Help from "@material-ui/icons/Help";
 import MenuIcon from "@material-ui/icons/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { ProjectsRoute, HomeRoute } from "../Routing";
+import { Link } from "react-router-dom";
+
 const drawerWidth = 250;
 const theme = createMuiTheme({
   palette: {
@@ -69,14 +72,24 @@ class Layout extends Component {
       <div id="drawer-container">
         <div className="logo-drawer" />
         <List>
-          <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+          <ListItem
+            button
+            component={Link}
+            to={HomeRoute}
+            onClick={mobileOpen ? this.handleDrawerToggle : null}
+          >
             <ListItemIcon>
               <Help className={classes.icon} />
             </ListItemIcon>
             <ListItemText primary="About" />
           </ListItem>
           <Divider />
-          <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+          <ListItem
+            button
+            component={Link}
+            to={ProjectsRoute}
+            onClick={mobileOpen ? this.handleDrawerToggle : null}
+          >
             <ListItemIcon>
               <PersonIcon className={classes.icon} />
             </ListItemIcon>
@@ -145,7 +158,7 @@ class Layout extends Component {
                   <div className={classes.toolbar} />
                 </Hidden>
                 <Box width="100%" className="mainContent">
-                  <Typography variant="h1">Hello</Typography>
+                  {this.props.children}
                 </Box>
               </main>
             </div>
